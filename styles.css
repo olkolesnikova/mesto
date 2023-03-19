@@ -1,0 +1,164 @@
+.page {
+    max-width: 1280px;
+    background-color: black;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    margin: 0 auto;
+
+}
+
+.header {
+    
+    max-width: 880px;
+    min-height: 74px;
+    margin: 45px 200px 0 200px;
+}
+
+.header__logo {
+    max-width: 142px;
+    height: 33px;
+}
+
+.header__line {
+    margin-top: 41px;
+    width: 880px;
+    height: 0px;
+    opacity: 0.7;
+    border: 1px solid #545454;
+}
+
+.page__profile {
+    margin-top: 40px;
+
+}
+
+.profile {
+    margin-right: 200px;
+    margin-left: 200px;
+    max-width: 880px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+}
+
+.profile__avatar {
+    width: 120px;
+    height: 120px;
+    background-size: cover;
+    border-radius: 50%;
+
+}
+
+.profile__info {
+    width: 336px;
+    margin-left: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+
+}
+
+.profile__name {
+    margin: 0;
+    max-width: 294px;
+    margin-bottom: 16px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 48px;
+    color: #FFFFFF;
+}
+
+.profile__description {
+    margin: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+}
+
+.profile__edit-button {
+    margin: 0;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    align-self: center;
+    border: 1px solid white;
+    background: url(./images/Vector.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+}
+
+.profile__add-button {
+    width: 150px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    margin-left: 244px;
+    align-self: center;
+    background: url(./images/Vector_add.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid #FFFFFF;
+    border-radius: 2px;
+}
+
+.page__elements {
+    margin-top: 50px;
+}
+
+.elements {
+    max-width: 880px;
+    width: 100%;
+    margin-left: 200px;
+    margin-right: 200px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px 17px;
+}
+
+.element {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    height: 361px;
+    
+    
+}
+
+.element__image {
+    height: 282px;
+    width: 100%;
+    object-fit: cover;
+    
+}
+
+.element__description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 15px 31px 21px;
+}
+
+.element__button {
+    background: url(./images/vector_element.png);
+    width: 22px;
+    height: 19px;
+    border: none;
+}
+
+.element__name {
+    margin: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    
+}
