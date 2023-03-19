@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="./vendor/fonts/fonts.css">
-    <title>Document</title>
+    <title>Mesto</title>
 </head>
 
 <body class="page">
@@ -81,6 +81,24 @@
         </section>
 
     </main>
+
+    <footer class="footer page__footer">
+        <p class="footer__content">&copy;&nbsp;2023 Mesto Russia</p>
+    </footer>
+
+    <section class="popup popup_type_edit-profile">
+        <form class="popup__container">
+            <div role="button" class="popup__close"></div>
+            <h1 class="popup__title">Редактировать профиль</h1>
+            <input type="text" class="popup__input popup__input_type_name">
+            <div class="popup__line"></div>
+            <input type="text" class="popup__input popup__input_type_description">
+            <div class="popup__line"></div>
+            <button type="submit" class="popup__submit">Сохранить</button>
+
+        </form>
+    </section>
+    <script src="index.js"></script>
 </body>
 
 </html>
