@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="./vendor/fonts/fonts.css">
+    <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
 </head>
 
 <body class="page">
     <header class="header">
-        <img src="./images/header_logo.png" alt="" class="header__logo">
+        <img src="./images/header_logo.png" alt="Логотип проекта Место" class="header__logo">
         <div class="header__line"></div>
     </header>
 
@@ -24,14 +23,13 @@
                 <button type="button" aria-label="Кнопка редактирования профиля" class="profile__edit-button"></button>
                 <p class="profile__description">Исследователь океана</p>
             </div>
-
             <button type="button" aria-label="Кнопка добавления" class="profile__add-button"></button>
         </section>
 
         <section class="elements page__elements">
 
             <div class="element">
-                <img src="/images/photo-grid_1.jpg" alt="" class="element__image">
+                <img src="/images/photo-grid_1.jpg" alt="Солнце на закате" class="element__image">
                 <div class="element__description">
                     <p class="element__name">Карачаевск</p>
                     <button type="button" class="element__button"></button>
@@ -39,7 +37,7 @@
             </div>
 
             <div class="element">
-                <img src="./images/photo-grid_2.jpg" alt="" class="element__image">
+                <img src="./images/photo-grid_2.jpg" alt="Гора Эльбрус" class="element__image">
                 <div class="element__description">
                     <p class="element__name">Гора Эльбрус</p>
                     <button type="button" class="element__button"></button>
@@ -47,7 +45,7 @@
             </div>
 
             <div class="element">
-                <img src="./images/photo-grid_3.jpg" alt="" class="element__image">
+                <img src="./images/photo-grid_3.jpg" alt="Домбай" class="element__image">
                 <div class="element__description">
                     <p class="element__name">Домбай</p>
                     <button type="button" class="element__button"></button>
@@ -55,7 +53,7 @@
             </div>
 
             <div class="element">
-                <img src="./images/photo-grid_4.jpg" alt="" class="element__image">
+                <img src="./images/photo-grid_4.jpg" alt="Горы" class="element__image">
                 <div class="element__description">
                     <p class="element__name">Гора Эльбрус</p>
                     <button type="button" class="element__button"></button>
@@ -63,7 +61,7 @@
             </div>
 
             <div class="element">
-                <img src="./images/photo-grid_5.jpg" alt="" class="element__image">
+                <img src="./images/photo-grid_5.jpg" alt="Лес в лунном свете" class="element__image">
                 <div class="element__description">
                     <p class="element__name">Домбай</p>
                     <button type="button" class="element__button"></button>
@@ -71,7 +69,7 @@
             </div>
 
             <div class="element">
-                <img src="./images/photo-grid_6.jpg" alt="" class="element__image">
+                <img src="./images/photo-grid_6.jpg" alt="Побережье горной реки" class="element__image">
                 <div class="element__description">
                     <p class="element__name">Карачаево-Черкесск</p>
                     <button type="button" class="element__button"></button>
@@ -86,7 +84,7 @@
         <p class="footer__content">&copy;&nbsp;2023 Mesto Russia</p>
     </footer>
 
-    <section class="popup popup_type_edit-profile">
+    <section class="popup">
         <form class="popup__container">
             <div role="button" class="popup__close"></div>
             <h1 class="popup__title">Редактировать профиль</h1>
@@ -98,7 +96,7 @@
 
         </form>
     </section>
-    <script src="index.js"></script>
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>
