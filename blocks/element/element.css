@@ -3,4 +3,13 @@
     background-color: #fff;
     border-radius: 10px;
     height: 361px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif
+}
+
+@media screen and (max-width: 767px) {
+    
+    .element {
+        width: 282px;
+        height: 361px;
+    }
 }

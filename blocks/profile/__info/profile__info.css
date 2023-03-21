@@ -5,3 +5,13 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+@media screen and (max-width: 767px) {
+    
+    .profile__info {
+        margin-left: 19px;
+        margin-right: 19px;
+        margin-bottom: 36px;
+        width: 282px;
+    }
+}

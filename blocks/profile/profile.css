@@ -5,4 +5,16 @@
     width: 100%;
     display: flex;
     align-items: center;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+@media screen and (max-width: 767px) {
+    
+    .profile {
+        margin-left: 19px;
+        margin-right: 19px;
+        width: 282px;
+        height: 286px;
+        flex-direction: column;
+    }
 }

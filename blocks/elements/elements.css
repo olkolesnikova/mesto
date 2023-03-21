@@ -8,3 +8,14 @@
     grid-template-rows: repeat(2, 1fr);
     gap: 20px 17px;
 }
+
+@media screen and (max-width: 767px) {
+
+    .elements {
+        margin-left: 19px;
+        margin-right: 19px;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        row-gap: 20px;
+    }
+}
