@@ -1,5 +1,4 @@
-.element {
-    width: 100%;
+.element {    
     background-color: #fff;
     border-radius: 10px;
     height: 361px;
@@ -7,9 +6,10 @@
 }
 
 @media screen and (max-width: 767px) {
-    
+
     .element {
-        width: 282px;
-        height: 361px;
+       width: 60%;
+       margin: 0 auto;
+       min-width: 282px;
     }
 }

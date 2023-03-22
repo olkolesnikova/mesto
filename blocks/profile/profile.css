@@ -2,10 +2,10 @@
     margin-right: 200px;
     margin-left: 200px;
     max-width: 880px;
-    width: 100%;
     display: flex;
     align-items: center;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
+    
 }
 
 @media screen and (max-width: 767px) {
@@ -13,8 +13,8 @@
     .profile {
         margin-left: 19px;
         margin-right: 19px;
-        width: 282px;
-        height: 286px;
+        max-width: 720px;
         flex-direction: column;
+        
     }
 }

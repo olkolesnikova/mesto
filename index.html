@@ -12,15 +12,18 @@
 <body class="page">
     <header class="header">
         <img src="./images/header_logo.png" alt="Логотип проекта Место" class="header__logo">
-        <div class="header__line"></div>
     </header>
 
     <main class="content">
         <section class="profile page__profile">
             <img src="./images/avatar.jpg" class="profile__avatar" alt="">
             <div class="profile__info">
-                <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button type="button" aria-label="Кнопка редактирования профиля" class="profile__edit-button"></button>
+                <div class="profile__title">
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <button type="button" aria-label="Кнопка редактирования профиля"
+                        class="profile__edit-button"></button>
+                </div>
+
                 <p class="profile__description">Исследователь океана</p>
             </div>
             <button type="button" aria-label="Кнопка добавления" class="profile__add-button"></button>
@@ -89,9 +92,7 @@
             <div role="button" class="popup__close"></div>
             <h1 class="popup__title">Редактировать профиль</h1>
             <input type="text" class="popup__input popup__input_type_name">
-            <div class="popup__line"></div>
             <input type="text" class="popup__input popup__input_type_description">
-            <div class="popup__line"></div>
             <button type="submit" class="popup__submit">Сохранить</button>
 
         </form>

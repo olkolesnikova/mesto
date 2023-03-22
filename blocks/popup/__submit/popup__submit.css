@@ -13,8 +13,19 @@
     color: #FFFFFF;
     cursor: pointer;
     opacity: 1;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .popup__submit:hover {
     opacity: .6;
+}
+
+@media screen and (max-width: 767px) {
+    
+    .popup__submit {
+        min-width: 238px;
+        margin: 0 auto;
+        width: 60%;
+    }   
 }
