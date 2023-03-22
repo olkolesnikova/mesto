@@ -16,11 +16,11 @@
 
     .profile__name {
         width: 189px;
-        margin-bottom: 14px;
         font-style: normal;
         font-size: 27px;
         line-height: 33px;
         text-align: center;
         color: white;
+        min-height: 26px;
     }
 }

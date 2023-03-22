@@ -1,10 +1,19 @@
 .elements {
     max-width: 880px;
-    margin-left: 200px;
-    margin-right: 200px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px 17px;
+}
+
+@media screen and (max-width: 1023px) {
+
+    .elements {
+        max-width: 800px;
+        grid-template-columns: repeat(2, 1fr);
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 }
 
 @media screen and (max-width: 767px) {
