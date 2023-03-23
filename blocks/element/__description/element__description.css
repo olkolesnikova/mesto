@@ -6,14 +6,16 @@
     width: 246px;    
 }
 
+@media screen and (max-width: 1023px) {
+    
+    .element__description {
+       width: 90%;        
+    }
+}
+
 @media screen and (max-width: 767px) {
     
     .element__description {
-       width: 85%;
-       
-       
-       
-
-        
+       width: 85%;        
     }
 }
