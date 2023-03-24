@@ -1,7 +1,6 @@
 .element {    
     background-color: #fff;
     border-radius: 10px;
-    height: 361px;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
@@ -9,8 +8,7 @@
 
     .element {
        width: 100%;
-       margin: 0 auto;
-       
+       margin: 0 auto;       
     }
 }
 

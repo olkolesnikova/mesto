@@ -1,4 +1,6 @@
 .profile__title {
     display: flex;
     max-width: 336px;
+    justify-content: space-between;
+    gap: 18px;
 }

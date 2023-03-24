@@ -4,4 +4,9 @@
     height: 19px;
     border: none;
     padding: 0;
+    opacity: 1;
+}
+
+.element__button:hover {
+    opacity: .5;
 }

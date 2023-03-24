@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     width: 430px;
-    height: 330px;
     background-color: white;
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
@@ -13,8 +12,8 @@
     
     .popup__container {
         min-width: 282px;
-        margin: 0 auto;
+        max-width: 400px;
+        margin: 0 19px;
         width: 60%;
-        height: 322px;
     }
 }

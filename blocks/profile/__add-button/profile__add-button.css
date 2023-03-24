@@ -11,6 +11,7 @@
     border: 2px solid #FFFFFF;
     border-radius: 2px;
     cursor: pointer;
+    transition: opacity 0.5s;
     opacity: 1;
 }
 
@@ -30,8 +31,6 @@
     .profile__add-button {
         margin-left: 19px;
         margin-right: 19px;
-        width: 282px;
-        
-        
+        width: 282px;        
     }
 }

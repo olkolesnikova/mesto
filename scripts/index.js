@@ -9,8 +9,8 @@ const descriptionInput = editProfileForm.querySelector('.popup__input_type_descr
 
 function openEditForm() {
     editProfileForm.classList.add('popup_opened');
-    nameInput.value = nameProfile.innerHTML;
-    descriptionInput.value = descriptionProfile.innerHTML; 
+    nameInput.value = nameProfile.textContent;
+    descriptionInput.value = descriptionProfile.textContent; 
 };
 
 function closeEditForm() {
@@ -20,8 +20,8 @@ function closeEditForm() {
 function submitForm(evt) {
     evt.preventDefault();
 
-    nameProfile.innerHTML = nameInput.value;
-    descriptionProfile.innerHTML = descriptionInput.value;
+    nameProfile.textContent = nameInput.value;
+    descriptionProfile.textContent = descriptionInput.value;
     
     editProfileForm.classList.remove('popup_opened');
 

@@ -16,7 +16,7 @@
 
     <main class="content">
         <section class="profile page__profile">
-            <img src="./images/avatar.jpg" class="profile__avatar" alt="">
+            <img src="./images/avatar.jpg" class="profile__avatar" alt="Уменьшенная фотография профиля">
             <div class="profile__info">
                 <div class="profile__title">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -34,7 +34,7 @@
             <div class="element">
                 <img src="./images/photo-grid_1.jpg" alt="Солнце на закате" class="element__image">
                 <div class="element__description">
-                    <p class="element__name">Карачаевск</p>
+                    <h1 class="element__name">Карачаевск</h1>
                     <button type="button" class="element__button"></button>
                 </div>
             </div>
@@ -42,7 +42,7 @@
             <div class="element">
                 <img src="./images/photo-grid_2.jpg" alt="Гора Эльбрус" class="element__image">
                 <div class="element__description">
-                    <p class="element__name">Гора Эльбрус</p>
+                    <h1 class="element__name">Гора Эльбрус</h1>
                     <button type="button" class="element__button"></button>
                 </div>
             </div>
@@ -50,7 +50,7 @@
             <div class="element">
                 <img src="./images/photo-grid_3.jpg" alt="Домбай" class="element__image">
                 <div class="element__description">
-                    <p class="element__name">Домбай</p>
+                    <h1 class="element__name">Домбай</h1>
                     <button type="button" class="element__button"></button>
                 </div>
             </div>
@@ -58,7 +58,7 @@
             <div class="element">
                 <img src="./images/photo-grid_4.jpg" alt="Горы" class="element__image">
                 <div class="element__description">
-                    <p class="element__name">Гора Эльбрус</p>
+                    <h1 class="element__name">Гора Эльбрус</h1>
                     <button type="button" class="element__button"></button>
                 </div>
             </div>
@@ -66,7 +66,7 @@
             <div class="element">
                 <img src="./images/photo-grid_5.jpg" alt="Лес в лунном свете" class="element__image">
                 <div class="element__description">
-                    <p class="element__name">Домбай</p>
+                    <h1 class="element__name">Домбай</h1>
                     <button type="button" class="element__button"></button>
                 </div>
             </div>
@@ -74,7 +74,7 @@
             <div class="element">
                 <img src="./images/photo-grid_6.jpg" alt="Побережье горной реки" class="element__image">
                 <div class="element__description">
-                    <p class="element__name">Карачаево-Черкесск</p>
+                    <h1 class="element__name">Карачаево-Черкесск</h1>
                     <button type="button" class="element__button"></button>
                 </div>
             </div>
@@ -89,10 +89,10 @@
 
     <section class="popup">
         <form class="popup__container">
-            <div role="button" class="popup__close"></div>
-            <h1 class="popup__title">Редактировать профиль</h1>
-            <input type="text" class="popup__input popup__input_type_name">
-            <input type="text" class="popup__input popup__input_type_description">
+            <button type="button" class="popup__close"></button>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input type="text" name="name" class="popup__input popup__input_type_name">
+            <input type="text" name="description" class="popup__input popup__input_type_description">
             <button type="submit" class="popup__submit">Сохранить</button>
 
         </form>

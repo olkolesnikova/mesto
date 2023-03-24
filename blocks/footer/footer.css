@@ -1,20 +1,21 @@
 .footer {
     margin-left: 200px;
-    margin-bottom: 60px;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
     width: 318px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
-    color: #545454;
+}
+
+@media screen and (max-width: 1150px) {
+    
+    .footer {
+        margin-left: 100px;
+    }
 }
 
 @media screen and (max-width: 1023px) {
     
     .footer {
+        width: 282px;
         margin-left: 19px;
-        margin-bottom: 36px;
     }
 }
 
