@@ -7,6 +7,7 @@
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     margin-bottom: 30px;
+    padding-bottom: 10px;
 }
 
 .popup__input:last-of-type {
@@ -19,5 +20,6 @@
         min-width: 238px;
         width: 80%;
         max-width: 400px;
+        padding-bottom: 8px;
     }
 }

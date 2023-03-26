@@ -34,7 +34,7 @@
             <div class="element">
                 <img src="./images/photo-grid_1.jpg" alt="Солнце на закате" class="element__image">
                 <div class="element__description">
-                    <h1 class="element__name">Карачаевск</h1>
+                    <h3 class="element__name">Карачаевск</h3>
                     <button type="button" class="element__button"></button>
                 </div>
             </div>
@@ -42,7 +42,7 @@
             <div class="element">
                 <img src="./images/photo-grid_2.jpg" alt="Гора Эльбрус" class="element__image">
                 <div class="element__description">
-                    <h1 class="element__name">Гора Эльбрус</h1>
+                    <h3 class="element__name">Гора Эльбрус</h3>
                     <button type="button" class="element__button"></button>
                 </div>
             </div>
@@ -50,7 +50,7 @@
             <div class="element">
                 <img src="./images/photo-grid_3.jpg" alt="Домбай" class="element__image">
                 <div class="element__description">
-                    <h1 class="element__name">Домбай</h1>
+                    <h2 class="element__name">Домбай</h2>
                     <button type="button" class="element__button"></button>
                 </div>
             </div>
@@ -58,7 +58,7 @@
             <div class="element">
                 <img src="./images/photo-grid_4.jpg" alt="Горы" class="element__image">
                 <div class="element__description">
-                    <h1 class="element__name">Гора Эльбрус</h1>
+                    <h3 class="element__name">Гора Эльбрус</h3>
                     <button type="button" class="element__button"></button>
                 </div>
             </div>
@@ -66,7 +66,7 @@
             <div class="element">
                 <img src="./images/photo-grid_5.jpg" alt="Лес в лунном свете" class="element__image">
                 <div class="element__description">
-                    <h1 class="element__name">Домбай</h1>
+                    <h3 class="element__name">Домбай</h3>
                     <button type="button" class="element__button"></button>
                 </div>
             </div>
@@ -74,7 +74,7 @@
             <div class="element">
                 <img src="./images/photo-grid_6.jpg" alt="Побережье горной реки" class="element__image">
                 <div class="element__description">
-                    <h1 class="element__name">Карачаево-Черкесск</h1>
+                    <h3 class="element__name">Карачаево-Черкесск</h3>
                     <button type="button" class="element__button"></button>
                 </div>
             </div>
@@ -88,14 +88,15 @@
     </footer>
 
     <section class="popup">
-        <form class="popup__container">
+        <div class="popup__container">
             <button type="button" class="popup__close"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <input type="text" name="name" class="popup__input popup__input_type_name">
-            <input type="text" name="description" class="popup__input popup__input_type_description">
-            <button type="submit" class="popup__submit">Сохранить</button>
-
-        </form>
+            <form name="profileForm" class="popup__form">
+                <input type="text" name="name" class="popup__input popup__input_type_name">
+                <input type="text" name="description" class="popup__input popup__input_type_description">
+                <button type="submit" class="popup__submit">Сохранить</button>
+            </form>
+        </div>
     </section>
     <script src="./scripts/index.js"></script>
 </body>
