@@ -27,14 +27,11 @@ const initialCards = [
 
 const cardTemplate = document.getElementById('card-template');
 const cardContainer = document.querySelector('.elements')
-console.log(cardTemplate);
-
+const editCardPopup = document.querySelector('.popup-add-card');
 
 //функция создания карточки
 const createCardElement = (cardData) => {
     const cardElement = cardTemplate.content.querySelector('.element').cloneNode(true);
-    console.log(cardElement);
-
     const cardImage = cardElement.querySelector('.element__image');
     const cardName = cardElement.querySelector('.element__name');
     cardImage.src = cardData.link;
@@ -43,12 +40,19 @@ const createCardElement = (cardData) => {
     const likeButton = cardElement.querySelector('.element__button-like');
 
     const handlerLike = function() {
-        likeButton.classList.toggle('element__button-like_type_active');
+        likeButton.classList.toggle('element__button-like_type_active'); //клик по сердечку
+    }
+
+    const deleteButton = cardElement.querySelector('.element__button-trash');
+
+    const handlerDeleteCard = function() { //удаление карточки
+        cardElement.remove();
     }
 
     likeButton.addEventListener('click', handlerLike);
+    deleteButton.addEventListener('click', handlerDeleteCard);
     return cardElement;
-    //console.log(cardData);
+    
 }
 
 const renderCardElement = (cardElement) => {
@@ -60,22 +64,22 @@ initialCards.forEach((card) => {
     renderCardElement(createCardElement(card));
 });
 
-
-
 const editButton = document.querySelector('.profile__edit-button');
-const editProfileForm = document.querySelector('.popup');
+const editProfileForm = document.querySelector('.popup'); //попап редактирования профиля
 const closeFormButton = editProfileForm.querySelector('.popup__close');
 const nameProfile = document.querySelector('.profile__name');
 const descriptionProfile = document.querySelector('.profile__description');
 const submitFormButton = editProfileForm.querySelector('.popup__submit');
 const nameInput = editProfileForm.querySelector('.popup__input_type_name');
 const descriptionInput = editProfileForm.querySelector('.popup__input_type_description');
-const addCardForm = document.querySelector('.popup__add-card');
+const addCardForm = document.querySelector('.popup-add-card'); //попап добавления карточки
 const addCardFormButton = document.querySelector('.profile__add-button');
 const closeAddFormButton = addCardForm.querySelector('.popup__close');
+const editCardSubmit = addCardForm.querySelector('.popup__submit'); //кнопка Сохранить на втором попапе
+
 
 function openEditForm() {
-    editProfileForm.classList.add('popup_opened'); //открытие формы редактирования
+    openPopupForm(editProfileForm); //открытие формы редактирования
     nameInput.value = nameProfile.textContent;
     descriptionInput.value = descriptionProfile.textContent;
 };
@@ -94,19 +98,43 @@ function submitForm(evt) {
 
 }
 
-function openAddCardForm() {
+/* function openAddCardForm() {
     addCardForm.classList.add('popup_opened'); //открытие формы добавления карточки
-}
+} */
 
 function closeAddCardForm() {
     addCardForm.classList.remove('popup_opened');
+}
+
+function handlerAddCardSubmit(event) {
+    event.preventDefault();
+
+    const nameInput = addCardForm.querySelector('.popup__input_type_title');
+    const linkInput = addCardForm.querySelector('.popup__input_type_link');
+    
+    const name = nameInput.value;
+    const link = linkInput.value;
+
+    const cardData = {
+        name,
+        link
+    };
+
+    renderCardElement(createCardElement(cardData));
+    closeAddCardForm();
+
+}
+
+function openPopupForm(popupForm) {
+    popupForm.classList.add('popup_opened');
 }
 
 editButton.addEventListener('click', openEditForm);
 closeFormButton.addEventListener('click', closeEditForm);
 editProfileForm.addEventListener('submit', submitForm);
 
-addCardFormButton.addEventListener('click', openAddCardForm);
+addCardFormButton.addEventListener('click', openPopupForm(addCardForm));
 closeAddFormButton.addEventListener('click', closeAddCardForm);
 
+addCardForm.addEventListener('submit', handlerAddCardSubmit); //сохранение новой карточки
 
