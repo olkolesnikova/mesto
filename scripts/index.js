@@ -32,7 +32,7 @@ const zoomImage = document.querySelector('.popup-open-image__zoom-image');
 const zoomCardCaption = document.querySelector('.popup-open-image__image-caption');
 
 const zoomImagePopup = document.querySelector('.popup-open-image');
-const zoomImageCloseButton = zoomImagePopup.querySelector('.popup__close-image');
+const zoomImageCloseButton = zoomImagePopup.querySelector('.popup-open-image__close-image');
 
 zoomImageCloseButton.addEventListener('click', () => {
     closePopup(zoomImagePopup)
