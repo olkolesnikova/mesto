@@ -26,24 +26,44 @@ const initialCards = [
 ];
 
 const cardTemplate = document.getElementById('card-template');
-const cardContainer = document.querySelector('.elements')
+const cardContainer = document.querySelector('.elements');
 
+const zoomImage = document.querySelector('.popup-open-image__zoom-image');
+const zoomCardCaption = document.querySelector('.popup-open-image__image-caption');
+
+const zoomImagePopup = document.querySelector('.popup-open-image');
+const zoomImageCloseButton = zoomImagePopup.querySelector('.popup__close-image');
+
+zoomImageCloseButton.addEventListener('click', () => {
+    closePopup(zoomImagePopup)
+});
 
 //функция создания карточки
 const createCardElement = (cardData) => {
     const cardElement = cardTemplate.content.querySelector('.element').cloneNode(true);
     const cardImage = cardElement.querySelector('.element__image');
     const cardName = cardElement.querySelector('.element__name');
-    cardImage.src = cardData.link;
-    cardName.textContent = cardData.name;
 
     const likeButton = cardElement.querySelector('.element__button-like');
+    const deleteButton = cardElement.querySelector('.element__button-trash');
+    
+    cardImage.src = cardData.link;
+    cardName.textContent = cardData.name;
+    cardImage.alt = cardData.name;
+
+    const openZoomImage = (cardData) => {
+        openPopup(zoomImagePopup);
+        
+        zoomImage.src = cardData.link;
+        zoomCardCaption.textContent = cardData.name;         
+        
+    }
+    
+    cardImage.addEventListener('click', () => openZoomImage(cardData));
 
     const handlerLike = () => {
         likeButton.classList.toggle('element__button-like_type_active'); //клик по сердечку
     }
-
-    const deleteButton = cardElement.querySelector('.element__button-trash');
 
     const handlerDeleteCard = () => { //удаление карточки
         cardElement.remove();
@@ -51,6 +71,7 @@ const createCardElement = (cardData) => {
 
     likeButton.addEventListener('click', handlerLike);
     deleteButton.addEventListener('click', handlerDeleteCard);
+
     return cardElement;
     
 }
@@ -84,10 +105,6 @@ function openEditForm() {
     descriptionInput.value = descriptionProfile.textContent;
 };
 
-/* function closeEditForm() {
-    editProfileForm.classList.remove('popup_opened');
-}; */
-
 function submitForm(evt) {
     evt.preventDefault();
 
@@ -95,14 +112,6 @@ function submitForm(evt) {
     descriptionProfile.textContent = descriptionInput.value;
     closePopup(editProfileForm);
 }
-
-/* function openAddCardForm() {
-    addCardForm.classList.add('popup_opened'); //открытие формы добавления карточки
-} */
-
-/* function closeAddCardForm() {
-    addCardForm.classList.remove('popup_opened');
-} */
 
 function handlerAddCardSubmit(event) {
     event.preventDefault();
@@ -145,4 +154,6 @@ closeAddFormButton.addEventListener('click', () => {
 });
 
 addCardForm.addEventListener('submit', handlerAddCardSubmit); //сохранение новой карточки
+
+
 

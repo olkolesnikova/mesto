@@ -8,6 +8,8 @@
     justify-content: center;
     z-index: 7;
     background-color: rgba(0, 0, 0, .5);
-    display: none;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
 }
