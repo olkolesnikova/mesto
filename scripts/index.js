@@ -1,30 +1,3 @@
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: './images/photo-grid_1.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: './images/photo-grid_2.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: './images/photo-grid_3.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: './images/photo-grid_4.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: './images/photo-grid_5.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: './images/photo-grid_6.jpg'
-    }
-];
-
 const cardTemplate = document.getElementById('card-template');
 const cardContainer = document.querySelector('.elements');
 
@@ -74,7 +47,7 @@ const createCardElement = (cardData) => {
 
         zoomImage.src = cardData.link;
         zoomCardCaption.textContent = cardData.name;
-        zoomAlt.textContent = cardData.name;
+        zoomImage.alt = cardData.link;
 
     }
 
@@ -121,10 +94,7 @@ function submitForm(evt) {
 function handlerAddCardSubmit(event) {
     event.preventDefault();
 
-    const nameInput = addCardForm.querySelector('.popup__input_type_title'); 
-    const linkInput = addCardForm.querySelector('.popup__input_type_link'); 
-
-    const name = nameInput.value; 
+    const name = titleInput.value; 
     const link = linkInput.value; 
 
      const cardData = { 
@@ -161,6 +131,7 @@ closeButtons.forEach((button) => {
     const popup = button.closest('.popup');
     button.addEventListener('click', () => closePopup(popup));
   });
+
 
 
 
