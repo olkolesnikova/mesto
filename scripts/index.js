@@ -137,45 +137,74 @@ const inputElement = formElement.querySelector('.popup__input');
 const errorElement = formElement.querySelector(`.${inputElement.id}-error`); */
 
 
-const isValid = (formElement, inputElement) => {
+
+const showInputError = (formElement, inputElement, errorMessage, config) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    
+    inputElement.classList.add(config.errorClass);
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add(config.errorClass);
+    
+}
+
+const hideInputError = (formElement, inputElement, config) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.remove(config.inputErrorClass);
+    errorElement.classList.remove(config.errorClass);
+    errorElement.textContent = '';
+}
+
+const isValid = (formElement, inputElement, config) => {
     
     if (inputElement.checkValidity()) {
-        hideInputError(formElement, inputElement); //валидный
+        hideInputError(formElement, inputElement, config); //валидный
     } else {
-        showInputError(formElement, inputElement, inputElement.validationMessage);
-        //невалидный
+        showInputError(formElement, inputElement, inputElement.validationMessage, config); //невалидный
+       
     }
 
 };
 
-const showInputError = (formElement, inputElement, errorMessage) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('popup__input_type_error');
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add('.popup__input-error');
-    
-}
+const hasInvalidInput = (inputList) => {
 
-const hideInputError = (formElement, inputElement) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('popup__input_type_error');
-    errorElement.classList.remove('.popup__input-error');
-    errorElement.textContent = '';
-}
+    return inputList.some((inputElement) => {
+        return !inputElement.validity.valid;
+    })
+};
 
-const setEventListeners = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+const setEventListeners = (formElement, config) => {
+    const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+    console.log(inputList)
+    const buttonElement = formElement.querySelector(config.submitButtonSelector);
+    console.log(buttonElement);
+
+    toggleButtonState(inputList, buttonElement, config);
 
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
             isValid(formElement, inputElement);
+
+            toggleButtonState(inputList, buttonElement, config);
         });
     });
 };
 
+const toggleButtonState = (inputList, buttonElement, config) => {
+    
+    
+    if (hasInvalidInput(inputList)) {
+        buttonElement.classList.add(config.inactiveButtonClass);
+        console.log(buttonElement);
+        buttonElement.setAttribute('disabled', '');
+    } else {
+        buttonElement.classList.remove(config.inactiveButtonClass);
+        buttonElement.removeAttribute('disabled');
+    }
+};
 
-const enableValidation = () => {
-    const formList = Array.from(document.querySelectorAll('.popup__form'));
+const enableValidation = (config) => {
+    const formList = Array.from(document.querySelectorAll(config.formSelector));
+    console.log(formList);
 
     
     formList.forEach((formElement) => {
@@ -183,8 +212,17 @@ const enableValidation = () => {
             event.preventDefault();
         });
     
-    setEventListeners(formElement);
+    setEventListeners(formElement, config);
     });
 };
 
-enableValidation();
+//enableValidation();
+
+enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit',
+    inactiveButtonClass: 'popup__submit_inactive',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error'
+  });

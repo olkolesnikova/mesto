@@ -3,5 +3,8 @@
     font-size: 12px;
     line-height: 15px;
     color: #FF0000;
-    height: 12px;
+    margin-left: 36px;
+    min-height: 30px;
+    margin-bottom: 13px;
+    width: 358px;
 }
