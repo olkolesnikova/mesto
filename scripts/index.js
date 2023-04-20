@@ -43,7 +43,7 @@ const createCardElement = (cardData) => {
 
         zoomImage.src = cardData.link;
         zoomCardCaption.textContent = cardData.name;
-        zoomImage.alt = cardData.link;
+        zoomImage.alt = cardData.name;
 
     }
 
@@ -135,13 +135,24 @@ function closePopupByEscape(event) {                              //закрыт
     };
   };
   
+
+ document.addEventListener('click', (event) => {
+    //console.log(event.target);
+    console.log(event);
+    //console.log(event.currentTarget);
+ });
+
 function closePopupByOverlay(event) {                               //закрытие по клику
 
     const openedPopup = document.querySelector('.popup_opened');
 
-    if (event.target === event.currentTarget && openedPopup.classList.contains('popup_opened')) {
+    if (event.target === event.currentTarget) {
         closePopup(openedPopup);
     };
+
+    console.log(openedPopup);
+    console.log(event.target);
+    console.log(event.currentTarget);
 
 }
 
