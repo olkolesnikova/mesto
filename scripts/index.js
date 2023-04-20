@@ -108,15 +108,15 @@ function handlerAddCardSubmit(event) {                       //сохранен�
 
 const popupList = document.querySelectorAll('.popup');
 
-const closePopupByEsc = (popup) => {                        //закрытие по Esc
+/* const closePopupByEsc = (popup) => {                        //закрытие по Esc
     document.addEventListener('keydown', (event) => {
         if (event.code === 'Escape') {
             closePopup(popup);
         };
     });
-};
+}; */
 
-const closePopupByOverlay = (popup) => {                    //закрытие по клику
+/* const closePopupByOverlay = (popup) => {                    //закрытие по клику
 
     popup.addEventListener('click', (event) => {
         if (event.target === event.currentTarget && popup.classList.contains('popup_opened')) {
@@ -124,20 +124,44 @@ const closePopupByOverlay = (popup) => {                    //закрытие �
         };
     });
      
-};
+}; */
 
-popupList.forEach((popup) => {
-    closePopupByEsc(popup);
+function closePopupByEscape(event) {                              //закрытие по Esc
+
+    const openedPopup = document.querySelector('.popup_opened');
+
+    if (event.key === 'Escape') {
+        closePopup(openedPopup);
+    };
+  };
+  
+function closePopupByOverlay(event) {                               //закрытие по клику
+
+    const openedPopup = document.querySelector('.popup_opened');
+
+    if (event.target === event.currentTarget && openedPopup.classList.contains('popup_opened')) {
+        closePopup(openedPopup);
+    };
+
+}
+
+/* popupList.forEach((popup) => {
+    closePopupByEscape(popup);
     closePopupByOverlay(popup);
 });
+ */
 
-const openPopup = (popup) => {
-    popup.classList.add('popup_opened'); //общая функция открытия попапа   
+function openPopup (popup) {
+    popup.classList.add('popup_opened'); //общая функция открытия попапа
+    document.addEventListener('keydown', closePopupByEscape);
+    popup.addEventListener('click', closePopupByOverlay);
     
 }
 
 const closePopup = (popup) => {                             //общая функция закрытия
-    popup.classList.remove('popup_opened'); 
+    popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupByEscape);
+    popup.removeEventListener('click', closePopupByOverlay);
     
 }
 
