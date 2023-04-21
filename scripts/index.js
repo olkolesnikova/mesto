@@ -103,6 +103,9 @@ function handlerAddCardSubmit(event) {                       //сохранен�
     closePopup(addCardForm);
     event.target.reset();
 
+    submitFormButton.classList.add('popup__submit_inactive');
+    submitFormButton.setAttribute('disabled', '');
+    
 
 }
 
@@ -135,13 +138,6 @@ function closePopupByEscape(event) {                              //закрыт
     };
   };
   
-
- document.addEventListener('click', (event) => {
-    //console.log(event.target);
-    console.log(event);
-    //console.log(event.currentTarget);
- });
-
 function closePopupByOverlay(event) {                               //закрытие по клику
 
     const openedPopup = document.querySelector('.popup_opened');
@@ -150,10 +146,7 @@ function closePopupByOverlay(event) {                               //закры
         closePopup(openedPopup);
     };
 
-    console.log(openedPopup);
-    console.log(event.target);
-    console.log(event.currentTarget);
-
+    
 }
 
 /* popupList.forEach((popup) => {

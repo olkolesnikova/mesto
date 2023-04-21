@@ -11,4 +11,14 @@
     padding-bottom: 5px;
     visibility: hidden;
     opacity: 0;
+    
+}
+
+@media screen and (max-width: 767px) {
+    
+    .popup__input-error {
+        width: 242px;
+        margin-left: 20px;
+        
+    }
 }
