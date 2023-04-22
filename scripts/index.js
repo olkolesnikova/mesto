@@ -104,7 +104,7 @@ function handlerAddCardSubmit(event) {                       //сохранен�
     event.target.reset();
 
     submitFormButton.classList.add('popup__submit_inactive');
-    submitFormButton.setAttribute('disabled', '');
+    submitFormButton.setAttribute('disabled', 'true');
     
 
 }
