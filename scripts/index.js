@@ -87,6 +87,7 @@ function submitForm(evt) {
     closePopup(editProfileForm);
 }
 
+
 function handlerAddCardSubmit(event) {                       //сохранение карточки
     event.preventDefault();
 
@@ -102,11 +103,20 @@ function handlerAddCardSubmit(event) {                       //сохранен�
 
     closePopup(addCardForm);
     event.target.reset();
-
-    submitFormButton.classList.add('popup__submit_inactive');
-    submitFormButton.setAttribute('disabled', 'true');
     
 
+    editCardSubmitButtonState(editCardSubmit);
+
+    /* editCardSubmit.classList.add('popup__submit_inactive');
+    editCardSubmit.setAttribute('disabled', 'true'); */
+    
+
+}
+
+
+function editCardSubmitButtonState (button) {
+    button.classList.add('popup__submit_inactive');
+    button.setAttribute('disabled', 'true');
 }
 
 const popupList = document.querySelectorAll('.popup');
