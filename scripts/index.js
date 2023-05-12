@@ -1,11 +1,12 @@
 const cardTemplate = document.getElementById('card-template');
 const cardContainer = document.querySelector('.elements');
 
-const zoomImage = document.querySelector('.popup__zoom-image');
+
 const zoomCardCaption = document.querySelector('.popup__image-caption');
 
-const zoomImagePopup = document.querySelector('.popup-open-image');
-const zoomImageCloseButton = zoomImagePopup.querySelector('.popup__close');
+
+
+//const zoomImageCloseButton = zoomImagePopup.querySelector('.popup__close');
 
 const editButton = document.querySelector('.profile__edit-button');
 const editProfileForm = document.querySelector('.popup-edit-profile'); //попап редактирования профиля
@@ -26,7 +27,7 @@ const linkInput = addCardForm.querySelector('.popup__input_type_link');
 const closeButtons = document.querySelectorAll('.popup__close');
 
 //функция создания карточки
-const createCardElement = (cardData) => {
+/* const createCardElement = (cardData) => {
     const cardElement = cardTemplate.content.querySelector('.element').cloneNode(true);
     const cardImage = cardElement.querySelector('.element__image');
     const cardName = cardElement.querySelector('.element__name');
@@ -66,12 +67,13 @@ const createCardElement = (cardData) => {
 
 const renderCardElement = (cardElement) => {
     cardContainer.prepend(cardElement);
-}
+} */
 
+import { initialCards } from "./constants.js";
 //перебор исходного массиаа
-initialCards.forEach((card) => {
+/* initialCards.forEach((card) => {
     renderCardElement(createCardElement(card));
-});
+}); */
 
 function openEditForm() {
     openPopup(editProfileForm); //открытие формы редактирования
@@ -88,11 +90,17 @@ function submitForm(evt) {
 }
 
 
+import { toggleButtonState, config } from "./validate.js";
+
 function handlerAddCardSubmit(event) {                       //сохранение карточки
     event.preventDefault();
 
     const name = titleInput.value;
     const link = linkInput.value;
+
+    const inputs = Array.from(event.target.querySelectorAll('.popup__input'));
+    const button = event.target.querySelector('.popup__submit');
+    
 
     const cardData = {
         name,
@@ -104,8 +112,9 @@ function handlerAddCardSubmit(event) {                       //сохранен�
     closePopup(addCardForm);
     event.target.reset();
     
+    toggleButtonState(inputs, button, config);
 
-    editCardSubmitButtonState(editCardSubmit);
+    //editCardSubmitButtonState(editCardSubmit);
 
     /* editCardSubmit.classList.add('popup__submit_inactive');
     editCardSubmit.setAttribute('disabled', 'true'); */
@@ -114,10 +123,11 @@ function handlerAddCardSubmit(event) {                       //сохранен�
 }
 
 
-function editCardSubmitButtonState (button) {
+
+/* function editCardSubmitButtonState (button) {
     button.classList.add('popup__submit_inactive');
     button.setAttribute('disabled', 'true');
-}
+} */
 
 const popupList = document.querySelectorAll('.popup');
 
@@ -188,4 +198,89 @@ closeButtons.forEach((button) => {
     const popup = button.closest('.popup');
     button.addEventListener('click', () => closePopup(popup));
 });
+
+class Card {
+
+constructor (cardData, templateSelector, openZoomImage) {
+    this._cardData = cardData;
+    this._cardName = cardData.name;
+    this._cardImage = cardData.link;
+    this._cardImageAlt = cardData.name;
+
+    this._openZoomImage = openZoomImage;
+        
+    this._templateSelector = templateSelector;
+}
+
+_getTemplate() {
+
+    const cardElement = document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
+    
+    return cardElement;
+}
+
+generateCard() {
+
+    this._element = this._getTemplate();
+    
+    this._element.querySelector('.element__name').textContent = this._cardName;
+    this._element.querySelector('.element__image').src = this._cardImage;
+
+    this._likeButton = this._element.querySelector('.element__button-like');
+        
+    this._deleteButton = this._element.querySelector('.element__button-trash');
+
+    this._zoomImage = this._element.querySelector('.element__image');
+    
+    this._setEventListeners();
+
+    return this._element;
+
+}
+
+_handlerLike = () => {
+    this._likeButton.classList.toggle('element__button-like_type_active'); //клик по сердечку
+}
+
+_handlerDeleteCard = () => { //удаление карточки
+    this._element.remove();
+}
+
+_setEventListeners() {
+
+    this._likeButton.addEventListener('click', () => this._handlerLike());
+
+    this._deleteButton.addEventListener('click', () => this._handlerDeleteCard());
+
+    this._zoomImage.addEventListener('click', () => this._openZoomImage(this._cardData));
+    
+}
+
+}
+
+const zoomImagePopup = document.querySelector('.popup-open-image');
+const zoomImage = zoomImagePopup.querySelector('.popup__zoom-image');
+console.log(zoomImage);
+
+const openZoomImage = (cardData) => {
+    openPopup(zoomImagePopup);
+
+    zoomImage.src = cardData.link;
+    zoomCardCaption.textContent = cardData.name;
+    zoomImage.alt = cardData.name;
+
+}
+
+
+
+initialCards.forEach((item) => {
+    const card = new Card(item, '#card-template', openZoomImage);
+    const cardElement = card.generateCard();
+
+    cardContainer.prepend(cardElement);
+    
+    
+});
+
+
 

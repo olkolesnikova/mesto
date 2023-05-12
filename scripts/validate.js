@@ -1,4 +1,4 @@
-const config = {
+export const config = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__submit',
@@ -56,7 +56,7 @@ const setEventListeners = (formElement, config) => {
     });
 };
 
-const toggleButtonState = (inputList, buttonElement, config) => {
+export const toggleButtonState = (inputList, buttonElement, config) => {
     
     
     if (hasInvalidInput(inputList)) {
