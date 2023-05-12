@@ -1,10 +1,11 @@
+import { toggleButtonState, config } from "./validate.js";
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+
 const cardTemplate = document.getElementById('card-template');
 const cardContainer = document.querySelector('.elements');
 
-
 const zoomCardCaption = document.querySelector('.popup__image-caption');
-
-
 
 //const zoomImageCloseButton = zoomImagePopup.querySelector('.popup__close');
 
@@ -89,8 +90,10 @@ function submitForm(evt) {
     closePopup(editProfileForm);
 }
 
+const renderCardElement = (cardElement) => {
+    cardContainer.prepend(cardElement);
+}
 
-import { toggleButtonState, config } from "./validate.js";
 
 function handlerAddCardSubmit(event) {                       //сохранение карточки
     event.preventDefault();
@@ -100,29 +103,26 @@ function handlerAddCardSubmit(event) {                       //сохранен�
 
     const inputs = Array.from(event.target.querySelectorAll('.popup__input'));
     const button = event.target.querySelector('.popup__submit');
-    
+
 
     const cardData = {
         name,
         link
     };
 
-    renderCardElement(createCardElement(cardData));
+    renderCardElement(createdCardElement(cardData));
 
     closePopup(addCardForm);
     event.target.reset();
-    
+
     toggleButtonState(inputs, button, config);
 
     //editCardSubmitButtonState(editCardSubmit);
 
     /* editCardSubmit.classList.add('popup__submit_inactive');
     editCardSubmit.setAttribute('disabled', 'true'); */
-    
 
 }
-
-
 
 /* function editCardSubmitButtonState (button) {
     button.classList.add('popup__submit_inactive');
@@ -156,8 +156,8 @@ function closePopupByEscape(event) {                              //закрыт
     if (event.key === 'Escape') {
         closePopup(openedPopup);
     };
-  };
-  
+};
+
 function closePopupByOverlay(event) {                               //закрытие по клику
 
     const openedPopup = document.querySelector('.popup_opened');
@@ -166,7 +166,6 @@ function closePopupByOverlay(event) {                               //закры
         closePopup(openedPopup);
     };
 
-    
 }
 
 /* popupList.forEach((popup) => {
@@ -175,18 +174,18 @@ function closePopupByOverlay(event) {                               //закры
 });
  */
 
-function openPopup (popup) {
+function openPopup(popup) {
     popup.classList.add('popup_opened'); //общая функция открытия попапа
     document.addEventListener('keydown', closePopupByEscape);
     popup.addEventListener('click', closePopupByOverlay);
-    
+
 }
 
 const closePopup = (popup) => {                             //общая функция закрытия
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupByEscape);
     popup.removeEventListener('click', closePopupByOverlay);
-    
+
 }
 
 editButton.addEventListener('click', openEditForm);
@@ -199,68 +198,8 @@ closeButtons.forEach((button) => {
     button.addEventListener('click', () => closePopup(popup));
 });
 
-class Card {
-
-constructor (cardData, templateSelector, openZoomImage) {
-    this._cardData = cardData;
-    this._cardName = cardData.name;
-    this._cardImage = cardData.link;
-    this._cardImageAlt = cardData.name;
-
-    this._openZoomImage = openZoomImage;
-        
-    this._templateSelector = templateSelector;
-}
-
-_getTemplate() {
-
-    const cardElement = document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
-    
-    return cardElement;
-}
-
-generateCard() {
-
-    this._element = this._getTemplate();
-    
-    this._element.querySelector('.element__name').textContent = this._cardName;
-    this._element.querySelector('.element__image').src = this._cardImage;
-
-    this._likeButton = this._element.querySelector('.element__button-like');
-        
-    this._deleteButton = this._element.querySelector('.element__button-trash');
-
-    this._zoomImage = this._element.querySelector('.element__image');
-    
-    this._setEventListeners();
-
-    return this._element;
-
-}
-
-_handlerLike = () => {
-    this._likeButton.classList.toggle('element__button-like_type_active'); //клик по сердечку
-}
-
-_handlerDeleteCard = () => { //удаление карточки
-    this._element.remove();
-}
-
-_setEventListeners() {
-
-    this._likeButton.addEventListener('click', () => this._handlerLike());
-
-    this._deleteButton.addEventListener('click', () => this._handlerDeleteCard());
-
-    this._zoomImage.addEventListener('click', () => this._openZoomImage(this._cardData));
-    
-}
-
-}
-
 const zoomImagePopup = document.querySelector('.popup-open-image');
 const zoomImage = zoomImagePopup.querySelector('.popup__zoom-image');
-console.log(zoomImage);
 
 const openZoomImage = (cardData) => {
     openPopup(zoomImagePopup);
@@ -271,16 +210,19 @@ const openZoomImage = (cardData) => {
 
 }
 
-
-
 initialCards.forEach((item) => {
     const card = new Card(item, '#card-template', openZoomImage);
     const cardElement = card.generateCard();
 
     cardContainer.prepend(cardElement);
-    
-    
+
+
 });
+
+const createdCardElement = (cardData) => {
+    const card = new Card(cardData, '#card-template', openZoomImage);
+    return card.generateCard();
+}
 
 
 
