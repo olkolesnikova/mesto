@@ -2,10 +2,7 @@ export class Card {
 
     constructor (cardData, templateSelector, openZoomImage) {
         this._cardData = cardData;
-        this._cardName = cardData.name;
-        this._cardImage = cardData.link;
-        this._cardImageAlt = cardData.name;
-    
+          
         this._openZoomImage = openZoomImage;
             
         this._templateSelector = templateSelector;
@@ -21,16 +18,17 @@ export class Card {
     generateCard() {
     
         this._element = this._getTemplate();
+
+        this._cardImage = this._element.querySelector('.element__image');
         
-        this._element.querySelector('.element__name').textContent = this._cardName;
-        this._element.querySelector('.element__image').src = this._cardImage;
+        this._element.querySelector('.element__name').textContent = this._cardData.name;
+        this._cardImage.alt = this._cardData.name;
+        this._cardImage.src = this._cardData.link;
     
         this._likeButton = this._element.querySelector('.element__button-like');
             
         this._deleteButton = this._element.querySelector('.element__button-trash');
     
-        this._zoomImage = this._element.querySelector('.element__image');
-        
         this._setEventListeners();
     
         return this._element;
@@ -51,7 +49,7 @@ export class Card {
     
         this._deleteButton.addEventListener('click', () => this._handlerDeleteCard());
     
-        this._zoomImage.addEventListener('click', () => this._openZoomImage(this._cardData));
+        this._cardImage.addEventListener('click', () => this._openZoomImage(this._cardData));
         
     }
     
