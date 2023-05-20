@@ -36,9 +36,9 @@ export class FormValidator {
 
     }
 
-    _hasInvalidInput = (inputList) => {
+    _hasInvalidInput = () => {
 
-        return inputList.some((inputElement) => {
+        return this._inputList.some((inputElement) => {
             return !inputElement.validity.valid;
         })
     }
@@ -71,17 +71,11 @@ export class FormValidator {
     };
 
     enableValidation = () => {
-        const formList = Array.from(document.querySelectorAll(this._config.formSelector));
-
-        formList.forEach((formElement) => {
-            formElement.addEventListener('submit', (event) => {
-                event.preventDefault();
-            });
-
-            this._setEventListeners();
-        });
-    };
-
+        this._formElement.addEventListener('submit', (event) => { 
+             event.preventDefault(); 
+        }); 
+        this._setEventListeners();
+    }
 
 }
 

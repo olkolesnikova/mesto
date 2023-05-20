@@ -116,9 +116,11 @@ const openZoomImage = (cardData) => {
 const createdCardElement = (cardData) => {
     const card = new Card(cardData, '#card-template', openZoomImage);
     return card.generateCard();
+    
 }
 
 initialCards.forEach((cardData) => {
+   
     renderCardElement(createdCardElement(cardData));
 
 });
