@@ -154,7 +154,7 @@ function closePopup (popup) {                             //общая функ�
 editButton.addEventListener('click', () => openEditForm());
 //editProfileForm.addEventListener('submit', submitEditProfileForm);
 addCardFormButton.addEventListener('click', () => addNewCard.openPopup());
-addCardForm.addEventListener('submit', handlerAddCardSubmit); //сохранение новой карточки
+//addCardForm.addEventListener('submit', handlerAddCardSubmit); //сохранение новой карточки
 
 /* closeButtons.forEach((button) => {
     const popup = button.closest('.popup');
