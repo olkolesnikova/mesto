@@ -6,6 +6,7 @@ import Popup from './Popup.js'
 import PopupWithForm from "./PopupWithForm.js";
 import PopupWithImage from "./PopupWithImage.js";
 import UserInfo from "./UserInfo.js";
+import '../pages/index.css';
 
 const cardContainer = document.querySelector('.elements');
 const zoomCardCaption = document.querySelector('.popup__image-caption');
@@ -65,7 +66,6 @@ function openEditForm() {
     /* nameInput.value = nameProfile.textContent;
     descriptionInput.value = descriptionProfile.textContent; */
     const userData = profileInfo.getUserInfo();
-    console.log(userData);
     editProfilePopup.setInputValues(userData);
     //editProfilePopup.setInputValues(userData);
 };
