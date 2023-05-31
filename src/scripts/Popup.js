@@ -12,7 +12,7 @@ export default class Popup {
         this.popup.classList.add('popup_opened'); //общая функция открытия попапа
         document.addEventListener('keydown', this._handleEscClose);
         this.popup.addEventListener('click', this.closePopupByOverlay);
-        this.setEventListeners();
+        
     }
     
     closePopup () {                             //общая функция закрытия
@@ -24,14 +24,12 @@ export default class Popup {
     _handleEscClose(event) {                              //закрытие по Esc
 
         if (event.key === 'Escape') {
-            const openedPopup = document.querySelector('.popup_opened');
+            
             this.closePopup();
         };
     };
     
     closePopupByOverlay(event) {                               //закрытие по клику
-    
-        const openedPopup = document.querySelector('.popup_opened');
     
         if (event.target === event.currentTarget) {
             this.closePopup();

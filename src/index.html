@@ -10,12 +10,12 @@
 
 <body class="page">
     <header class="header">
-        <img src="../src/images/header_logo.png" alt="Логотип проекта Место" class="header__logo">
+        <img src="<%=require('./images/header_logo.png')%>" alt="Логотип проекта Место" class="header__logo">
     </header>
 
     <main class="content">
         <section class="profile page__profile">
-            <img src="../src/images/avatar.jpg" class="profile__avatar" alt="Уменьшенная фотография профиля">
+            <img src="<%=require('./images/avatar.jpg')%>" class="profile__avatar" alt="Уменьшенная фотография профиля">
             <div class="profile__info">
                 <div class="profile__title">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -108,7 +108,7 @@
             <button type="button" class="popup__close"></button>
             <h2 class="popup__title">Новое место</h2>
             <form name="add-card-form" class="popup__form" novalidate>
-                <input id="title" type="text" name="title" class="popup__input popup__input_type_title"
+                <input id="title" type="text" name="name" class="popup__input popup__input_type_title"
                     placeholder="Название" minlength="2" maxlength="30" required>
                 <span class="title-error popup__input-error"></span>
                 <input id="link" type="url" name="link" class="popup__input popup__input_type_link"
@@ -125,7 +125,7 @@
             <button type="button" class="popup__close"></button>
             
             <figure class="popup__figure">
-                <img role="button" src="./images/photo-grid_1.jpg" class="popup__zoom-image" alt="Фотография природы">
+                <img role="button" src="<%=require('./images/photo-grid_1.jpg')%>" class="popup__zoom-image" alt="Фотография природы">
                 <figcaption class="popup__image-caption"></figcaption>
             </figure>
 
@@ -136,7 +136,7 @@
 
         <div class="element">
             <div class="element__icon">
-                <img src="./images/photo-grid_1.jpg" alt="Солнце на закате" class="element__image">
+                <img src="<%=require('./images/photo-grid_1.jpg')%>" alt="Солнце на закате" class="element__image">
                 <button type="button" class="element__button-trash"></button>
             </div>
             <div class="element__description">

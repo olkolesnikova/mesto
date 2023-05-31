@@ -19,8 +19,8 @@ export default class UserInfo {
 
     setUserInfo(data) {
 
-        this.profileName.textContent = document.querySelector('.popup__input_type_name').value;
-        this.profileDescription.textContent = document.querySelector('.popup__input_type_description').value;
+        this.profileName.textContent = data.name;
+        this.profileDescription.textContent = data.description;
 
     }
 
