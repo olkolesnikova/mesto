@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    entry: './src/scripts/index.js',
+    entry: './src/pages/index.js',
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
@@ -13,7 +13,7 @@ module.exports = {
     devServer: {
         static: path.resolve(__dirname, 'dist'),
         open: true,
-        port: 5055,
+        port: 8000,
         compress: true,
     },
     devtool: 'eval-source-map',

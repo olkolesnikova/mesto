@@ -1,12 +1,12 @@
-import { Card } from "./Card.js";
-import { config } from "./config.js";
-import { FormValidator } from "./FormValidator.js";
-import { Section } from './Section.js';
-import Popup from './Popup.js'
-import PopupWithForm from "./PopupWithForm.js";
-import PopupWithImage from "./PopupWithImage.js";
-import UserInfo from "./UserInfo.js";
-import { initialCards } from "../utils/constants.js";
+import { Card } from "../components/Card.js";
+import { initialCards, config } from "../utils/constants.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { Section } from '../components/Section.js';
+import Popup from '../components/Popup.js'
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
+
 
 import '../pages/index.css';
 
@@ -100,6 +100,10 @@ function handlerAddCardSubmit(addCardData) {                       //сохра�
 
 editButton.addEventListener('click', () => openEditForm());
 //editProfileForm.addEventListener('submit', submitEditProfileForm);
-addCardFormButton.addEventListener('click', () => addNewCard.openPopup());
+addCardFormButton.addEventListener('click', () => {
+    addNewCard.openPopup();
+    cardFormValidator.enableValidation();
+});
+
 //addCardForm.addEventListener('submit', handlerAddCardSubmit); //сохранение новой карточки
 
