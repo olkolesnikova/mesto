@@ -102,7 +102,7 @@ editButton.addEventListener('click', () => openEditForm());
 //editProfileForm.addEventListener('submit', submitEditProfileForm);
 addCardFormButton.addEventListener('click', () => {
     addNewCard.openPopup();
-    cardFormValidator.enableValidation();
+    cardFormValidator.resetValidation();
 });
 
 //addCardForm.addEventListener('submit', handlerAddCardSubmit); //сохранение новой карточки
