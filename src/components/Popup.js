@@ -13,6 +13,7 @@ export default class Popup {
         document.addEventListener('keydown', this._handleEscClose);
         this.popup.addEventListener('click', this.closePopupByOverlay);
         
+        
     }
     
     closePopup () {                             //общая функция закрытия

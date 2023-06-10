@@ -13,7 +13,7 @@ module.exports = {
     devServer: {
         static: path.resolve(__dirname, 'dist'),
         open: true,
-        port: 5000,
+        port: 8082,
         compress: true,
     },
     devtool: 'eval-source-map',

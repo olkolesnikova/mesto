@@ -1,0 +1,17 @@
+.profile__avatar-hover {
+
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    background-position: 50%;
+    position: absolute;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+}
+
+.profile__avatar-hover:hover {
+
+    opacity: 1;
+
+}

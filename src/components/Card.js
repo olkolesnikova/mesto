@@ -1,10 +1,11 @@
 export class Card {
 
-    constructor(cardData, templateSelector, openZoomImage) {
+    constructor(cardData, templateSelector, openZoomImage, onDeleteClick) {
         this._cardData = cardData;
 
         this._openZoomImage = openZoomImage;
-
+        this.onDeleteClick = onDeleteClick;
+        
         this._templateSelector = templateSelector;
     }
 
@@ -39,7 +40,7 @@ export class Card {
         this._likeButton.classList.toggle('element__button-like_type_active'); //клик по сердечку
     }
 
-    _handlerDeleteCard = () => { //удаление карточки
+    handlerDeleteCard = () => { //удаление карточки
         this._element.remove();
     }
 
@@ -47,14 +48,26 @@ export class Card {
         this._openZoomImage(this._cardData);
     }
 
+    delete() {
+        this._element.remove();
+    }
+
+    handlerDeleteClick () {
+        this.onDeleteClick(this);
+    }
+
     _setEventListeners() {
 
         this._likeButton.addEventListener('click', () => this._handlerLike());
 
-        this._deleteButton.addEventListener('click', () => this._handlerDeleteCard());
+        //this._deleteButton.addEventListener('click', () => this._handlerDeleteCard());
 
         this._cardImage.addEventListener('click', () => this._handlerCardClick());
 
+        this._deleteButton.addEventListener('click', () => this.handlerDeleteClick());
+
+        
+        
     }
 
 }
