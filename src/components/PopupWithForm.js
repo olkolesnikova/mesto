@@ -7,7 +7,7 @@ export default class PopupWithForm extends Popup {
 
         this.onSubmit = onSubmit;
         this.handleSubmit = this.handleSubmit.bind(this);
-        
+
         this.form = this.popup.querySelector('.popup__form');
 
         this.inputList = Array.from(this.form.querySelectorAll('.popup__input'));
@@ -43,17 +43,15 @@ export default class PopupWithForm extends Popup {
     async handleSubmit(evt) {
         evt.preventDefault();
         const originalText = this.submitButton.textContent;
-        
+
         try {
-          this.submitButton.textContent = 'Сохранение...';
-          await this.onSubmit(this.getInputValues());
-          this.closePopup();
+            this.submitButton.textContent = 'Сохранение...';
+            await this.onSubmit(this.getInputValues());
         } finally {
-          this.submitButton.textContent = originalText;
+            this.submitButton.textContent = originalText;
+            this.closePopup();
         }
-      }
-      
-    
+    }
 
     closePopup() {
         super.closePopup();

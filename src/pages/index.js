@@ -32,35 +32,25 @@ const zoomImage = zoomImagePopup.querySelector('.popup__zoom-image');
 
 const trashButton = document.querySelector('.element__button-trash');
 
-
-
 const api = new Api({
     url: 'https://mesto.nomoreparties.co/v1/cohort-68',
     headers: {
-        authorization: '71e140ff-2f6f-4fd2-8662-cbadd1dca0b9'
+        authorization: '71e140ff-2f6f-4fd2-8662-cbadd1dca0b9',
+        'Content-type': 'application/json'
     }
 })
 
 let userId = null;
 
-const cardsPromise = api.getCards()
-    .then((cards) => {
+Promise.all([api.getUserInfo(), api.getCards()])
+    .then(([user, cards]) => {
+
+        profileInfo.setUserInfo({ name: user.name, description: user.about, avatar: user.avatar, id: user._id })
         cards.forEach((data) => {
-
             cardList.addItem(createCard(data));
-
         })
-
     })
-    .catch((err) => {
-        console.log(err);
-    })
-
-const userInformation = api.getUserInfo()
-    .then((res) => {
-        userId = res._id;
-        console.log(userId);
-    });
+    .catch((err) => console.log(err));
 
 
 const editProfilePopup = new PopupWithForm('.popup-edit-profile', submitEditProfileForm);
@@ -79,7 +69,6 @@ const profileInfo = new UserInfo('.profile__name', '.profile__description');
 
 const openZoomImage = (cardData) => {
     imagePopup.openPopup(cardData);
-
 }
 
 const popupConfirmation = new PopupWithConfirmation('.popup-with-confirmation'); //попап подтверждения
@@ -91,10 +80,10 @@ const onDeleteClick = (card) => {
         api.deleteCard(card.cardId)
             .then(() => {
                 card.delete();
+                popupConfirmation.closePopup();
             })
             .catch((err) => console.log(err));
 
-        popupConfirmation.closePopup();
     });
 
 }
@@ -159,28 +148,24 @@ function openEditForm() {
 
 function submitEditProfileForm(userData) {
 
-    /* profileInfo.setUserInfo({
-        name: userData.name,
-        description: userData.description
-    });
-
-    editProfilePopup.closePopup(); */
-
     api.editProfileData({ name: nameInput.value, description: descriptionInput.value, avatar: profileAvatar.src })
         .then((data) => {
             profileInfo.setUserInfo({
                 name: data.name,
                 description: data.about,
                 avatar: data.avatar
-
-            })
+            });
+            editProfilePopup.closePopup();
         })
         .catch((err) => console.log(err));
-    editProfilePopup.closePopup();
+
 
 }
 
-profileAvatar.addEventListener('click', () => editProfileAvatar.openPopup());
+profileAvatar.addEventListener('click', () => {
+    editProfileAvatar.openPopup();
+    editAvatarValidator.resetValidation();
+});
 
 function submitEditAvatarForm(data) {
 
@@ -196,16 +181,7 @@ function submitEditAvatarForm(data) {
         .catch((err) => console.log(err));
 }
 
-
-
 function handlerAddCardSubmit(addCardData) {                       //сохранение карточки
-
-    /* const cardData = {
-        name: addCardData.name,
-        link: addCardData.link
-    };
-
-    cardList.addItem(createCard(cardData)); */
 
     api.addNewCard({ name: addCardData.name, link: addCardData.link })
         .then((data) => {
@@ -214,25 +190,18 @@ function handlerAddCardSubmit(addCardData) {                       //сохра�
         })
         .catch((err) => console.log(err))
 
-
     cardFormValidator.toggleButtonState();
 
 }
 
 
 editButton.addEventListener('click', () => openEditForm());
-//editProfileForm.addEventListener('submit', submitEditProfileForm);
 addCardFormButton.addEventListener('click', () => {
     addNewCard.openPopup();
     cardFormValidator.resetValidation();
 });
 
-Promise.all([api.getUserInfo(), api.getCards()])
-    .then(([user, cards]) => {
-        profileInfo.setUserInfo({ name: user.name, description: user.about, avatar: user.avatar, id: user._id })
-        cards.reverse();
-    })
-    .catch((err) => console.log(err));
+
 
 
 

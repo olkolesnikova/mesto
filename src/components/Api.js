@@ -9,10 +9,7 @@ export default class Api {
     getCards() {
 
         return fetch(`${this.url}/cards`, {
-            headers: {
-                authorization: this.authorization,
-                'Content-type': 'application/json',
-            },
+            headers: this.headers
         })
             .then(this.handleResponse);
     }
@@ -20,10 +17,7 @@ export default class Api {
     getUserInfo() {
 
         return fetch(`${this.url}/users/me`, {
-            headers: {
-                authorization: this.authorization,
-                'Content-type': 'application/json',
-            },
+            headers: this.headers
         })
             .then(this.handleResponse);
     }
@@ -33,10 +27,7 @@ export default class Api {
         return fetch(`${this.url}/users/me`, {
 
             method: 'PATCH',
-            headers: {
-                authorization: this.authorization,
-                'Content-type': 'application/json',
-            },
+            headers: this.headers,
             body: JSON.stringify({
                 name: data.name,
                 about: data.description,
@@ -51,17 +42,13 @@ export default class Api {
         return fetch(`${this.url}/cards`, {
 
             method: 'POST',
-            headers: {
-                authorization: this.authorization,
-                'Content-type': 'application/json',
-            },
+            headers: this.headers,
             body: JSON.stringify({
                 name: data.name,
                 link: data.link
             })
         })
             .then(this.handleResponse);
-
     }
 
     deleteCard(cardId) {
@@ -69,13 +56,9 @@ export default class Api {
         return fetch(`${this.url}/cards/${cardId}`, {
 
             method: 'DELETE',
-            headers: {
-                authorization: this.authorization,
-                'Content-type': 'application/json',
-            }
+            headers: this.headers
         })
             .then(this.handleResponse);
-
     }
 
     addLike(cardId) {
@@ -83,13 +66,9 @@ export default class Api {
         return fetch(`${this.url}/cards/${cardId}/likes`, {
 
             method: 'PUT',
-            headers: {
-                authorization: this.authorization,
-                'Content-type': 'application/json',
-            }
+            headers: this.headers
         })
             .then(this.handleResponse);
-
     }
 
     deleteLike(cardId) {
@@ -97,13 +76,9 @@ export default class Api {
         return fetch(`${this.url}/cards/${cardId}/likes`, {
 
             method: 'DELETE',
-            headers: {
-                authorization: this.authorization,
-                'Content-type': 'application/json',
-            }
+            headers: this.headers
         })
             .then(this.handleResponse);
-
     }
 
     updateUserAvatar(avatar) {
@@ -111,18 +86,13 @@ export default class Api {
         return fetch(`${this.url}/users/me/avatar`, {
 
             method: 'PATCH',
-            headers: {
-                authorization: this.authorization,
-                'Content-type': 'application/json',
-            },
+            headers: this.headers,
             body: JSON.stringify({
                 avatar: avatar.link
             })
         })
             .then(this.handleResponse);
-
     }
-
 
     handleResponse(res) {
 
@@ -132,7 +102,7 @@ export default class Api {
             return Promise.reject(`Ошибка: ${res.status}`);
         }
     }
-    }
+}
 
 
-    
+
