@@ -4,17 +4,9 @@
     object-fit: cover;
     border-radius: 50%;
     cursor: pointer;
-    opacity: 1;
-    position: absolute;
-    
+    display: flex;
+    position: inherit;    
 }
-
-.profile__avatar:hover {
-    
-    opacity: .8;
-    
-}
-
 
 @media screen and (max-width: 767px) {
     

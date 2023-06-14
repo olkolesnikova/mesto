@@ -25,10 +25,14 @@ const addCardFormButton = document.querySelector('.profile__add-button');
 const titleInput = addCardForm.querySelector('.popup__input_type_title');
 const linkInput = addCardForm.querySelector('.popup__input_type_link');
 const closeButtons = document.querySelectorAll('.popup__close');
-const profileAvatar = document.querySelector('.profile__avatar');
+const profileAvatar = document.querySelector('.profile__avatar-hover');
 
 const zoomImagePopup = document.querySelector('.popup-open-image');
 const zoomImage = zoomImagePopup.querySelector('.popup__zoom-image');
+
+const trashButton = document.querySelector('.element__button-trash');
+
+
 
 const api = new Api({
     url: 'https://mesto.nomoreparties.co/v1/cohort-68',
@@ -37,18 +41,26 @@ const api = new Api({
     }
 })
 
-/* const cardsPromise = api.getCards();
+let userId = null;
 
-api.getCards()
-.then((cards) => {
-    cards.forEach((item) => {
-        
-        cardList.addItem(createCard(item))
+const cardsPromise = api.getCards()
+    .then((cards) => {
+        cards.forEach((data) => {
+
+            cardList.addItem(createCard(data));
+
+        })
+
     })
-})
-.catch((err) => {
-    console.log(err);
-}) */
+    .catch((err) => {
+        console.log(err);
+    })
+
+const userInformation = api.getUserInfo()
+    .then((res) => {
+        userId = res._id;
+        console.log(userId);
+    });
 
 
 const editProfilePopup = new PopupWithForm('.popup-edit-profile', submitEditProfileForm);
@@ -57,13 +69,11 @@ editProfilePopup.setEventListeners();
 const addNewCard = new PopupWithForm('.popup-add-card', handlerAddCardSubmit);
 addNewCard.setEventListeners();
 
-const editProfileAvatar = new PopupWithForm('.popup-edit-avatar', handlerAddCardSubmit);
-editProfileAvatar.setEventListeners();
-profileAvatar.addEventListener('click', () => editProfileAvatar.openPopup());
-
-
 const imagePopup = new PopupWithImage('.popup-open-image');
 imagePopup.setEventListeners();
+
+const editProfileAvatar = new PopupWithForm('.popup-edit-avatar', submitEditAvatarForm);
+editProfileAvatar.setEventListeners();
 
 const profileInfo = new UserInfo('.profile__name', '.profile__description');
 
@@ -74,23 +84,39 @@ const openZoomImage = (cardData) => {
 
 const popupConfirmation = new PopupWithConfirmation('.popup-with-confirmation'); //попап подтверждения
 
-/* function submitConfirmation(card) {
-    card.delete();
-    popupConfirmation.closePopup();
-} */
-
 const onDeleteClick = (card) => {
 
     popupConfirmation.openPopup(() => {
-        card.delete();
+
+        api.deleteCard(card.cardId)
+            .then(() => {
+                card.delete();
+            })
+            .catch((err) => console.log(err));
+
         popupConfirmation.closePopup();
     });
 
-    /* confirmationForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        card.delete();
-        popupConfirmation.closePopup();
-    }) */
+}
+
+function onLikeClick(card) {
+
+    if (card.isLiked) {
+        api.deleteLike(card.cardId)
+            .then((data) => {
+
+                card.updateLikes(data.likes);
+            })
+            .catch((err) => console.log(err));
+    } else {
+        api.addLike(card.cardId)
+            .then((data) => {
+
+                card.updateLikes(data.likes);
+            })
+            .catch((err) => console.log(err));
+    }
+
 
 }
 
@@ -103,7 +129,7 @@ const cardList = new Section({
     }
 }, '.elements');
 
-cardList.renderItems(initialCards);
+//cardList.renderItems(initialCards);
 
 const profileFormElement = document.querySelector('.popup-edit-profile');
 const cardFormElement = document.querySelector('.popup-add-card');
@@ -117,8 +143,8 @@ profileValidator.enableValidation();
 cardFormValidator.enableValidation();
 editAvatarValidator.enableValidation();
 
-function createCard(item) {
-    const card = new Card(item, '#card-template', openZoomImage, onDeleteClick);
+function createCard(data) {
+    const card = new Card(data, '#card-template', openZoomImage, onDeleteClick, onLikeClick, userId);
     const cardElement = card.generateCard();
     return cardElement;
 }
@@ -133,23 +159,62 @@ function openEditForm() {
 
 function submitEditProfileForm(userData) {
 
-    profileInfo.setUserInfo({
+    /* profileInfo.setUserInfo({
         name: userData.name,
         description: userData.description
     });
 
+    editProfilePopup.closePopup(); */
+
+    api.editProfileData({ name: nameInput.value, description: descriptionInput.value, avatar: profileAvatar.src })
+        .then((data) => {
+            profileInfo.setUserInfo({
+                name: data.name,
+                description: data.about,
+                avatar: data.avatar
+
+            })
+        })
+        .catch((err) => console.log(err));
     editProfilePopup.closePopup();
+
 }
+
+profileAvatar.addEventListener('click', () => editProfileAvatar.openPopup());
+
+function submitEditAvatarForm(data) {
+
+    api.updateUserAvatar(data)
+        .then((data) => {
+            profileInfo.setUserInfo({
+                name: data.name,
+                description: data.about,
+                avatar: data.avatar
+            });
+            editProfileAvatar.closePopup();
+        })
+        .catch((err) => console.log(err));
+}
+
+
 
 function handlerAddCardSubmit(addCardData) {                       //сохранение карточки
 
-    const cardData = {
+    /* const cardData = {
         name: addCardData.name,
         link: addCardData.link
     };
 
-    cardList.addItem(createCard(cardData));
-    addNewCard.closePopup();
+    cardList.addItem(createCard(cardData)); */
+
+    api.addNewCard({ name: addCardData.name, link: addCardData.link })
+        .then((data) => {
+            cardList.addItem(createCard(data));
+            addNewCard.closePopup();
+        })
+        .catch((err) => console.log(err))
+
+
     cardFormValidator.toggleButtonState();
 
 }
@@ -162,6 +227,12 @@ addCardFormButton.addEventListener('click', () => {
     cardFormValidator.resetValidation();
 });
 
-//addCardForm.addEventListener('submit', handlerAddCardSubmit); //сохранение новой карточки
+Promise.all([api.getUserInfo(), api.getCards()])
+    .then(([user, cards]) => {
+        profileInfo.setUserInfo({ name: user.name, description: user.about, avatar: user.avatar, id: user._id })
+        cards.reverse();
+    })
+    .catch((err) => console.log(err));
+
 
 
