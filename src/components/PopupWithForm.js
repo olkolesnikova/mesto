@@ -49,7 +49,6 @@ export default class PopupWithForm extends Popup {
             await this.onSubmit(this.getInputValues());
         } finally {
             this.submitButton.textContent = originalText;
-            this.closePopup();
         }
     }
 

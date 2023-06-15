@@ -45,7 +45,9 @@ let userId = null;
 Promise.all([api.getUserInfo(), api.getCards()])
     .then(([user, cards]) => {
 
-        profileInfo.setUserInfo({ name: user.name, description: user.about, avatar: user.avatar, id: user._id })
+        profileInfo.setUserInfo({ name: user.name, description: user.about, avatar: user.avatar });
+        userId = user._id;
+
         cards.forEach((data) => {
             cardList.addItem(createCard(data));
         })
@@ -54,6 +56,7 @@ Promise.all([api.getUserInfo(), api.getCards()])
 
 
 const editProfilePopup = new PopupWithForm('.popup-edit-profile', submitEditProfileForm);
+console.log(editProfilePopup.getInputValues());
 editProfilePopup.setEventListeners();
 
 const addNewCard = new PopupWithForm('.popup-add-card', handlerAddCardSubmit);
@@ -63,7 +66,10 @@ const imagePopup = new PopupWithImage('.popup-open-image');
 imagePopup.setEventListeners();
 
 const editProfileAvatar = new PopupWithForm('.popup-edit-avatar', submitEditAvatarForm);
+
+
 editProfileAvatar.setEventListeners();
+console.log(editProfileAvatar.getInputValues());
 
 const profileInfo = new UserInfo('.profile__name', '.profile__description');
 
@@ -148,7 +154,7 @@ function openEditForm() {
 
 function submitEditProfileForm(userData) {
 
-    api.editProfileData({ name: nameInput.value, description: descriptionInput.value, avatar: profileAvatar.src })
+    api.editProfileData(userData)
         .then((data) => {
             profileInfo.setUserInfo({
                 name: data.name,
@@ -167,20 +173,23 @@ profileAvatar.addEventListener('click', () => {
     editAvatarValidator.resetValidation();
 });
 
-function submitEditAvatarForm(data) {
+function submitEditAvatarForm(avatar) { 
 
-    api.updateUserAvatar(data)
-        .then((data) => {
-            profileInfo.setUserInfo({
-                name: data.name,
-                description: data.about,
-                avatar: data.avatar
-            });
-            editProfileAvatar.closePopup();
-        })
-        .catch((err) => console.log(err));
-}
+    api.updateUserAvatar(avatar) 
+        .then((data) => { 
+            profileInfo.setUserInfo({ 
 
+                name: data.name, 
+                description: data.about, 
+                avatar: data.avatar 
+           }); 
+
+            editProfileAvatar.closePopup(); 
+
+        }) 
+        .catch((err) => console.log(err)); 
+
+} 
 function handlerAddCardSubmit(addCardData) {                       //сохранение карточки
 
     api.addNewCard({ name: addCardData.name, link: addCardData.link })

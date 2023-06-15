@@ -16,6 +16,7 @@ export default class UserInfo {
             name: this.profileName.textContent,
             description: this.profileDescription.textContent,
             avatar: this.avatar.src
+            
         }
     }
 

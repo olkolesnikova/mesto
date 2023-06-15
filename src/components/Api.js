@@ -88,7 +88,7 @@ export default class Api {
             method: 'PATCH',
             headers: this.headers,
             body: JSON.stringify({
-                avatar: avatar.link
+                avatar: avatar.avatar
             })
         })
             .then(this.handleResponse);
